@@ -7,9 +7,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rickandmortyapi.databinding.FragmentEpisodesBinding
 import com.example.rickandmortyapi.domain.common.base.BaseFragment
+import com.example.rickandmortyapi.domain.episodes.entity.EpisodeEntity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.launchIn
@@ -30,6 +32,14 @@ class EpisodesFragment : BaseFragment<FragmentEpisodesBinding>() {
     }
 
     override fun setupListeners() {
+        adapter.setOnClick(object : EpisodesAdapter.OnClick{
+            override fun onClicked(position: EpisodeEntity) {
+                findNavController().navigate(
+                    EpisodesFragmentDirections.actionEpisodesFragmentToEpisodeDetailFragment(position.id)
+                )
+            }
+
+        })
     }
 
     override fun setupObservers() {

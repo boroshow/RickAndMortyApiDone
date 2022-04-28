@@ -15,7 +15,7 @@ data class Info(
 )
 
 data class CharacterEntity(
-    val characterId: Int,
+    val id: Int,
     val name: String,
     val status: String,
     val species: String,
@@ -27,7 +27,7 @@ data class CharacterEntity(
     val episode: List<String>,
     val url: String,
     val created: String,
-    override val id: Long,
+    override val baseId: Long,
 ) : BaseId
 
 data class LocationCharacter(

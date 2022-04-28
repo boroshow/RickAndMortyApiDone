@@ -35,7 +35,7 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding>() {
         adapter.setOnClick(object : LocationsAdapter.OnClick {
             override fun onClicked(position: LocationEntity) {
                 findNavController().navigate(
-                    LocationsFragmentDirections.actionLocationsFragmentToLocationsDetailFragment(position.planetId)
+                    LocationsFragmentDirections.actionLocationsFragmentToLocationsDetailFragment(position.id)
                 )
             }
         })

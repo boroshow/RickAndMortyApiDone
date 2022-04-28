@@ -16,8 +16,7 @@ data class Info(
 )
 
 data class EpisodeEntity(
-    val idd: Long,
-    val episodeId: Int,
+    val id: Int,
     val name: String,
     @SerializedName("air_date")
     val airDate: String,
@@ -25,5 +24,5 @@ data class EpisodeEntity(
     val characters: List<String>,
     val url: String,
     val created: String,
-    override val id: Long,
+    override val baseId: Long,
 ) : BaseId
