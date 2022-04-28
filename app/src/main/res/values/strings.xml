@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">RickAndMortyApi</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="characters">Characters</string>
+    <string name="characterswithtwopoints">Characters :</string>
+    <string name="locations">Locations</string>
+    <string name="episodes">Episodes</string>
+    <string name="search">Search</string>
+    <string name="status">Status :</string>
+    <string name="rick_sanchaze">Rick Sanchaze</string>
+    <string name="dead">Dead</string>
+    <string name="type">Type :</string>
+    <string name="date">Date :</string>
+    <string name="input_character_name">Input character name</string>
+    <string name="input_episodes_name">Input episodes name</string>
+    <string name="input_locations_name">Input locations name</string>
+    <string name="species">Species :</string>
+    <string name="rick_s_toxic_side">Rick\'s Toxic Side</string>
+    <string name="humanoid">Humanoid</string>
+    <string name="dimension">Dimension :</string>
+    <string name="residents">Residents :</string>
+</resources>
