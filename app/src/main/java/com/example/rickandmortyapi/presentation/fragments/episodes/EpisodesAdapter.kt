@@ -9,12 +9,12 @@ import com.example.rickandmortyapi.domain.common.base.BaseDiffCallBack
 import com.example.rickandmortyapi.domain.episodes.entity.EpisodeEntity
 import com.example.rickandmortyapi.presentation.models.Episode
 
-class EpisodesAdapter : ListAdapter<Episode, EpisodesAdapter.EpisodesViewHolder>(
+class EpisodesAdapter : ListAdapter<EpisodeEntity, EpisodesAdapter.EpisodesViewHolder>(
     BaseDiffCallBack()) {
 
     class EpisodesViewHolder(private val binding: EpisodesItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(it: Episode) {
+        fun onBind(it: EpisodeEntity) {
             binding.tvEpisodesName.text = it.name
             binding.tvEpisodesData.text = it.airDate
         }

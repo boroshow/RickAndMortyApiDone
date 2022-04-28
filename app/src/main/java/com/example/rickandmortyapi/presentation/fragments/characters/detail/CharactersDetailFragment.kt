@@ -17,7 +17,6 @@ import kotlinx.coroutines.flow.onEach
 class CharactersDetailFragment : BaseFragment<FragmentCharactersDetailBinding>() {
 
     private val viewModel: CharactersDetailViewModel by viewModels()
-    private val args:CharactersDetailFragmentArgs by navArgs()
 
 
     override fun bind(): FragmentCharactersDetailBinding {
@@ -50,7 +49,7 @@ class CharactersDetailFragment : BaseFragment<FragmentCharactersDetailBinding>()
     }
 
     private fun observeCharacterDetail() {
-        viewModel.fetchCharacterDetail(args.idCharacter)
+//        viewModel.fetchCharacterDetail()
     }
 
     private fun handleState(state: CharactersDetailViewModel.CharactersDetailFragmentState) {

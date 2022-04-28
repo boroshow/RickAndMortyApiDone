@@ -1,6 +1,5 @@
 package com.example.rickandmortyapi.data.characters.remote
 
-import com.example.rickandmortyapi.domain.Either
 import com.example.rickandmortyapi.domain.characters.entity.CharacterEntity
 import com.example.rickandmortyapi.domain.characters.entity.CharactersEntity
 import retrofit2.Response

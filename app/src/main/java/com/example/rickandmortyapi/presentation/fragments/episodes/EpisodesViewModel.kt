@@ -2,10 +2,8 @@ package com.example.rickandmortyapi.presentation.fragments.episodes
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.rickandmortyapi.domain.common.base.BaseViewModel
 import com.example.rickandmortyapi.domain.episodes.entity.EpisodeEntity
 import com.example.rickandmortyapi.domain.episodes.usecase.GetEpisodesUseCase
-import com.example.rickandmortyapi.domain.locations.entity.LocationEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch

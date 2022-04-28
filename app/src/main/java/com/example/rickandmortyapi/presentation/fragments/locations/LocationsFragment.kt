@@ -7,9 +7,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rickandmortyapi.databinding.FragmentLocationsBinding
 import com.example.rickandmortyapi.domain.common.base.BaseFragment
+import com.example.rickandmortyapi.domain.locations.entity.LocationEntity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.launchIn
@@ -30,6 +32,13 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding>() {
     }
 
     override fun setupListeners() {
+        adapter.setOnClick(object : LocationsAdapter.OnClick {
+            override fun onClicked(position: LocationEntity) {
+                findNavController().navigate(
+                    LocationsFragmentDirections.actionLocationsFragmentToLocationsDetailFragment(position.planetId)
+                )
+            }
+        })
     }
 
     override fun setupObservers() {

@@ -1,7 +1,6 @@
 package com.example.rickandmortyapi.data.characters
 
 import com.example.rickandmortyapi.data.characters.remote.CharactersApi
-import com.example.rickandmortyapi.domain.Either
 import com.example.rickandmortyapi.domain.characters.entity.CharacterEntity
 import com.example.rickandmortyapi.domain.characters.repository.CharacterDetailRepository
 import com.example.rickandmortyapi.domain.characters.repository.CharactersRepository

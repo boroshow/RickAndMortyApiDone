@@ -2,13 +2,15 @@ package com.example.rickandmortyapi.data.locations
 
 import com.example.rickandmortyapi.data.locations.remote.LocationsApi
 import com.example.rickandmortyapi.domain.locations.entity.LocationEntity
+import com.example.rickandmortyapi.domain.locations.repository.LocationDetailRepository
 import com.example.rickandmortyapi.domain.locations.repository.LocationRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class LocationsRepositoryImpl @Inject constructor(private val api: LocationsApi) :
-    LocationRepository {
+    LocationRepository,LocationDetailRepository {
+
     override fun getLocations(): Flow<List<LocationEntity>> {
         return flow {
             val response = api.getLocations()
@@ -18,4 +20,11 @@ class LocationsRepositoryImpl @Inject constructor(private val api: LocationsApi)
             }
         }
     }
+
+    override fun getLocationDetail(id : Int): Flow<LocationEntity> {
+        return flow {
+            api.getLocationDetail(id)
+        }
+    }
+
 }

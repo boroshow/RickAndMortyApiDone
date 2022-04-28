@@ -2,6 +2,7 @@ package com.example.rickandmortyapi.data.locations
 
 import com.example.rickandmortyapi.data.common.module.NetworkModule
 import com.example.rickandmortyapi.data.locations.remote.LocationsApi
+import com.example.rickandmortyapi.domain.locations.repository.LocationDetailRepository
 import com.example.rickandmortyapi.domain.locations.repository.LocationRepository
 import dagger.Module
 import dagger.Provides
@@ -23,6 +24,12 @@ class LocationsModule {
     @Singleton
     @Provides
     fun providesLocationsRepository(locationsApi: LocationsApi): LocationRepository {
+        return LocationsRepositoryImpl(locationsApi)
+    }
+
+    @Singleton
+    @Provides
+    fun providesLocationDetailRepository(locationsApi: LocationsApi): LocationDetailRepository {
         return LocationsRepositoryImpl(locationsApi)
     }
 

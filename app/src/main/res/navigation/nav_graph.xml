@@ -44,21 +44,24 @@
         android:id="@+id/charactersDetailFragment"
         android:name="com.example.rickandmortyapi.presentation.fragments.characters.detail.CharactersDetailFragment"
         android:label="fragment_characters_detail"
-        tools:layout="@layout/fragment_characters_detail" >
-        <argument
-            android:name="idCharacter"
-            app:argType="string"
-            app:nullable="true" />
-    </fragment>
+        tools:layout="@layout/fragment_characters_detail" />
     <fragment
         android:id="@+id/locationsDetailFragment"
         android:name="com.example.rickandmortyapi.presentation.fragments.locations.detail.LocationsDetailFragment"
         android:label="fragment_locations_detail"
-        tools:layout="@layout/fragment_locations_detail" />
+        tools:layout="@layout/fragment_locations_detail" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/episodeDetailFragment"
         android:name="com.example.rickandmortyapi.presentation.fragments.episodes.detail.EpisodeDetailFragment"
         android:label="fragment_episode_detail"
-        tools:layout="@layout/fragment_episode_detail" />
+        tools:layout="@layout/fragment_episode_detail" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
 
 </navigation>

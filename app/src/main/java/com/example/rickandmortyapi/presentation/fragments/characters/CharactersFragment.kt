@@ -37,9 +37,7 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding>() {
     override fun setupListeners() {
         adapter.setOnClick(object : CharactersAdapter.OnClick{
             override fun onClicked(position: CharacterEntity) {
-                findNavController().navigate(
-                    CharactersFragmentDirections.actionCharactersFragmentToCharactersDetailFragment(position.characterId.toString())
-                )
+
             }
         })
     }

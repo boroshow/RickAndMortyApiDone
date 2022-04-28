@@ -33,8 +33,8 @@ class EpisodesFragment : BaseFragment<FragmentEpisodesBinding>() {
     }
 
     override fun setupObservers() {
-        observeEpisodes()
         observeState()
+        observeEpisodes()
     }
 
     override fun setupUI() {

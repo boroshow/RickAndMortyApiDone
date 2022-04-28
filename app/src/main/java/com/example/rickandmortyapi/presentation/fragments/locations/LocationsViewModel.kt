@@ -2,7 +2,6 @@ package com.example.rickandmortyapi.presentation.fragments.locations
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.rickandmortyapi.domain.common.base.BaseViewModel
 import com.example.rickandmortyapi.domain.locations.entity.LocationEntity
 import com.example.rickandmortyapi.domain.locations.usecase.GetLocationsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

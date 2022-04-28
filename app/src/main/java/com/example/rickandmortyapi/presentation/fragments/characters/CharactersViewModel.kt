@@ -1,9 +1,9 @@
 package com.example.rickandmortyapi.presentation.fragments.characters
 
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.rickandmortyapi.domain.characters.entity.CharacterEntity
 import com.example.rickandmortyapi.domain.characters.usecases.GetCharactersUseCase
-import com.example.rickandmortyapi.domain.common.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CharactersViewModel @Inject constructor(private val getCharactersUseCase: GetCharactersUseCase) :
-    BaseViewModel() {
+    ViewModel() {
 
     private val _getCharacters = MutableStateFlow<List<CharacterEntity>>(mutableListOf())
     val getCharacters: Flow<List<CharacterEntity>> get() = _getCharacters

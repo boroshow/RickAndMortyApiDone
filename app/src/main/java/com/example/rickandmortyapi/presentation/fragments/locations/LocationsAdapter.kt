@@ -5,17 +5,30 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmortyapi.databinding.LocationsItemBinding
+import com.example.rickandmortyapi.domain.characters.entity.CharacterEntity
 import com.example.rickandmortyapi.domain.common.base.BaseDiffCallBack
+import com.example.rickandmortyapi.domain.episodes.entity.EpisodeEntity
 import com.example.rickandmortyapi.domain.locations.entity.LocationEntity
+import com.example.rickandmortyapi.presentation.fragments.characters.CharactersAdapter
 
 class LocationsAdapter : ListAdapter<LocationEntity, LocationsAdapter.LocationsViewHolder>(
     BaseDiffCallBack()) {
 
-    class LocationsViewHolder(private val binding: LocationsItemBinding) :
+
+    private lateinit var onClick: OnClick
+
+    fun setOnClick(onClick: OnClick) {
+        this.onClick = onClick
+    }
+
+    inner class LocationsViewHolder(private val binding: LocationsItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(it: LocationEntity) {
-            binding.tvLocationsName.text = it.name
-            binding.tvLocationsType.text = it.type
+        fun onBind(location: LocationEntity) {
+            binding.tvLocationsName.text = location.name
+            binding.tvLocationsType.text = location.type
+            itemView.setOnClickListener{
+                onClick.onClicked(location)
+            }
         }
 
     }
@@ -30,6 +43,10 @@ class LocationsAdapter : ListAdapter<LocationEntity, LocationsAdapter.LocationsV
 
     override fun onBindViewHolder(holder: LocationsViewHolder, position: Int) {
         getItem(position)?.let { holder.onBind(it) }
+    }
+
+    interface OnClick {
+        fun onClicked(position: LocationEntity)
     }
 
 }
