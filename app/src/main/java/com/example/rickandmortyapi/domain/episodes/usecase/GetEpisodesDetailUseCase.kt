@@ -4,5 +4,5 @@ import com.example.rickandmortyapi.domain.episodes.repository.EpisodeDetailRepos
 import javax.inject.Inject
 
 class GetEpisodesDetailUseCase @Inject constructor(private val repository: EpisodeDetailRepository) {
-    operator fun invoke(id: Int) = repository.getEpisodeDetail(id)
+    operator fun invoke(episodeId: Int) = repository.getEpisodeDetail(episodeId)
 }

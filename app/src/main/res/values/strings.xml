@@ -19,4 +19,13 @@
     <string name="humanoid">Humanoid</string>
     <string name="dimension">Dimension :</string>
     <string name="residents">Residents :</string>
+    <string name="alive">Alive</string>
+    <string name="unknown">unknown</string>
+    <string name="gender">Gender :</string>
+    <string name="female">Female</string>
+    <string name="male">Male</string>
+    <string name="genderless">Genderless</string>
+    <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
+    <string name="episode_code">Episode code</string>
 </resources>

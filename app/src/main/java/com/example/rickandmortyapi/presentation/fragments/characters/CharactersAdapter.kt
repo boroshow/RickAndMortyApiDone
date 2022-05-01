@@ -9,7 +9,8 @@ import com.example.rickandmortyapi.databinding.CharactersItemBinding
 import com.example.rickandmortyapi.domain.characters.entity.CharacterEntity
 import com.example.rickandmortyapi.domain.common.base.BaseDiffCallBack
 
-class CharactersAdapter : ListAdapter<CharacterEntity, CharactersAdapter.CharactersViewHolder>(BaseDiffCallBack()) {
+class CharactersAdapter :
+    ListAdapter<CharacterEntity, CharactersAdapter.CharactersViewHolder>(BaseDiffCallBack()) {
 
     private lateinit var onClick: OnClick
 
@@ -23,7 +24,7 @@ class CharactersAdapter : ListAdapter<CharacterEntity, CharactersAdapter.Charact
             binding.imageCharacter.load(character.image)
             binding.tvCharacterName.text = character.name
             binding.tvCharacterStatus.text = character.status
-            itemView.setOnClickListener{
+            itemView.setOnClickListener {
                 onClick.onClicked(character)
             }
         }

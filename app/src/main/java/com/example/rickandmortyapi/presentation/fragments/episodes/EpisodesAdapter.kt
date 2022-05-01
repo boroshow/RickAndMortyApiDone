@@ -22,7 +22,7 @@ class EpisodesAdapter : ListAdapter<EpisodeEntity, EpisodesAdapter.EpisodesViewH
         fun onBind(episode: EpisodeEntity) {
             binding.tvEpisodesName.text = episode.name
             binding.tvEpisodesData.text = episode.airDate
-            itemView.setOnClickListener{
+            itemView.setOnClickListener {
                 onClick.onClicked(episode)
             }
         }

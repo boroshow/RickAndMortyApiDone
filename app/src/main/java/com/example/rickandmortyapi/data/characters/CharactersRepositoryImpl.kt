@@ -4,17 +4,22 @@ import com.example.rickandmortyapi.data.characters.remote.CharactersApi
 import com.example.rickandmortyapi.domain.characters.entity.CharacterEntity
 import com.example.rickandmortyapi.domain.characters.repository.CharacterDetailRepository
 import com.example.rickandmortyapi.domain.characters.repository.CharactersRepository
-import com.example.rickandmortyapi.presentation.state.UiState
+import com.example.rickandmortyapi.domain.common.base.BaseRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class CharactersRepositoryImpl @Inject constructor(private val api: CharactersApi) :
-    CharactersRepository, CharacterDetailRepository{
+    CharactersRepository, CharacterDetailRepository,
+    BaseRepository() {
 
-    override fun getCharacters(): Flow<List<CharacterEntity>> {
+    override fun getCharacters(
+        name: String?,
+        status: String?,
+        gender: String?
+    ): Flow<List<CharacterEntity>> {
         return flow {
-            val response = api.getCharacters()
+            val response = api.getCharacters(name, status, gender)
             if (response.isSuccessful) {
                 val body = response.body()
                 body?.results?.let { emit(it) }
@@ -22,11 +27,10 @@ class CharactersRepositoryImpl @Inject constructor(private val api: CharactersAp
         }
     }
 
-    override fun getCharacterDetail(characterId: String?): Flow<UiState<CharacterEntity>> {
-        return flow {
-            api.getCharacterDetail(characterId.toString())
 
-        }
+    override fun getCharacterDetail(characterId: Int) = doExecution {
+        api.getCharacterDetail(characterId)
     }
 
 }
+

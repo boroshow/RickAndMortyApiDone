@@ -32,4 +32,5 @@ class CharactersModule {
     fun providesCharactersDetailRepository(charactersApi: CharactersApi): CharacterDetailRepository {
         return CharactersRepositoryImpl(charactersApi)
     }
+
 }

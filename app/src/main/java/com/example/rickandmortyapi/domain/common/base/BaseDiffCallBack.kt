@@ -8,8 +8,8 @@ class BaseDiffCallBack<B : BaseId> : DiffUtil.ItemCallback<B>() {
         return oldItem.baseId == newItem.baseId
     }
 
-
     override fun areContentsTheSame(oldItem: B, newItem: B): Boolean {
         return oldItem == newItem
     }
+
 }

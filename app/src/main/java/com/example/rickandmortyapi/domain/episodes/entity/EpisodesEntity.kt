@@ -23,6 +23,5 @@ data class EpisodeEntity(
     val episode: String,
     val characters: List<String>,
     val url: String,
-    val created: String,
-    override val baseId: Long,
+    val created: String, override val baseId: Long?,
 ) : BaseId

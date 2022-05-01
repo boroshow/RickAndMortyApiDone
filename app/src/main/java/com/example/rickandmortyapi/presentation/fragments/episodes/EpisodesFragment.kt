@@ -1,5 +1,7 @@
 package com.example.rickandmortyapi.presentation.fragments.episodes
 
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.widget.Toast
 import androidx.core.view.isVisible
@@ -8,7 +10,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.rickandmortyapi.R
 import com.example.rickandmortyapi.databinding.FragmentEpisodesBinding
 import com.example.rickandmortyapi.domain.common.base.BaseFragment
 import com.example.rickandmortyapi.domain.episodes.entity.EpisodeEntity
@@ -22,7 +26,7 @@ import kotlinx.coroutines.launch
 class EpisodesFragment : BaseFragment<FragmentEpisodesBinding>() {
 
     private val viewModel: EpisodesViewModel by viewModels()
-
+    private val args: EpisodesFragmentArgs by navArgs()
     private val adapter: EpisodesAdapter by lazy {
         EpisodesAdapter()
     }
@@ -32,13 +36,24 @@ class EpisodesFragment : BaseFragment<FragmentEpisodesBinding>() {
     }
 
     override fun setupListeners() {
-        adapter.setOnClick(object : EpisodesAdapter.OnClick{
+        imageClick()
+        adapterOnclick()
+    }
+
+    private fun imageClick() {
+        binding.imageSort.setOnClickListener {
+            findNavController().navigate(R.id.action_episodesFragment_to_episodeFilterFragment)
+        }
+    }
+
+    private fun adapterOnclick() {
+        adapter.setOnClick(object : EpisodesAdapter.OnClick {
             override fun onClicked(position: EpisodeEntity) {
                 findNavController().navigate(
-                    EpisodesFragmentDirections.actionEpisodesFragmentToEpisodeDetailFragment(position.id)
+                    EpisodesFragmentDirections.actionEpisodesFragmentToEpisodeDetailFragment(
+                        position.id)
                 )
             }
-
         })
     }
 
@@ -48,6 +63,26 @@ class EpisodesFragment : BaseFragment<FragmentEpisodesBinding>() {
     }
 
     override fun setupUI() {
+        etLogic()
+        initAdapter()
+    }
+
+    private fun etLogic() {
+        binding.etSearchEpisodes.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                viewModel.fetchEpisodes(binding.etSearchEpisodes.text.toString(), null)
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                viewModel.fetchEpisodes(binding.etSearchEpisodes.text.toString(), null)
+            }
+        })
+    }
+
+    private fun initAdapter() {
         binding.rvEpisodes.apply {
             adapter = this@EpisodesFragment.adapter
             layoutManager = LinearLayoutManager(context)
@@ -55,6 +90,7 @@ class EpisodesFragment : BaseFragment<FragmentEpisodesBinding>() {
     }
 
     private fun observeEpisodes() {
+        viewModel.fetchEpisodes(null, args.episode)
         lifecycleScope.launch {
             viewModel.getEpisodes.collectLatest {
                 Log.e("TAG", it.toString())

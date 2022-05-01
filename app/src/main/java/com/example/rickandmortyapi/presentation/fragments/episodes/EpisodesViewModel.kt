@@ -20,14 +20,9 @@ class EpisodesViewModel @Inject constructor(private val getEpisodesUseCase: GetE
         MutableStateFlow<EpisdodesFragmentState>(EpisdodesFragmentState.Init)
     val state: StateFlow<EpisdodesFragmentState> get() = _state
 
-
-    init {
-        fetchCharacters()
-    }
-
-    private fun fetchCharacters() {
+    fun fetchEpisodes(name: String?, episode: String?) {
         viewModelScope.launch {
-            getEpisodesUseCase.invoke()
+            getEpisodesUseCase.invoke(name, episode)
                 .onStart {
                     setLoading()
                 }

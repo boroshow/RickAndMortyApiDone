@@ -9,17 +9,23 @@
         <entry key="app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.2388888888888889" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2388888888888889" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.28125" />
+        <entry key="app/src/main/res/layout/characters_dialog.xml" value="0.23020833333333332" />
+        <entry key="app/src/main/res/layout/characters_dialog_layout.xml" value="0.2796875" />
         <entry key="app/src/main/res/layout/characters_item.xml" value="0.2188306104901118" />
         <entry key="app/src/main/res/layout/dialog_layout.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/episodes_dialog_layout.xml" value="0.2796875" />
         <entry key="app/src/main/res/layout/episodes_item.xml" value="0.2953125" />
+        <entry key="app/src/main/res/layout/fragment_character_fiter.xml" value="0.2552083333333333" />
         <entry key="app/src/main/res/layout/fragment_characters.xml" value="0.2953125" />
         <entry key="app/src/main/res/layout/fragment_characters_detail.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_episode_detail.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/fragment_episode_filter.xml" value="0.25677083333333334" />
         <entry key="app/src/main/res/layout/fragment_episodes.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/fragment_episods.xml" value="0.2953125" />
         <entry key="app/src/main/res/layout/fragment_locations.xml" value="0.2953125" />
         <entry key="app/src/main/res/layout/fragment_locations_detail.xml" value="0.3098958333333333" />
-        <entry key="app/src/main/res/layout/fragment_search.xml" value="0.2796875" />
+        <entry key="app/src/main/res/layout/fragment_search.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/locations_dialog_layout.xml" value="0.335" />
         <entry key="app/src/main/res/layout/locations_item.xml" value="0.2796875" />
         <entry key="app/src/main/res/menu/item_menu.xml" value="0.2953125" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.17395833333333333" />

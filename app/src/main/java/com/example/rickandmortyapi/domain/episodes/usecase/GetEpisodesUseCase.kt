@@ -4,5 +4,5 @@ import com.example.rickandmortyapi.domain.episodes.repository.EpisodeRepository
 import javax.inject.Inject
 
 class GetEpisodesUseCase @Inject constructor(private val repository: EpisodeRepository) {
-    fun invoke() = repository.getEpisodes()
+    fun invoke(name: String?, episode: String?) = repository.getEpisodes(name, episode)
 }

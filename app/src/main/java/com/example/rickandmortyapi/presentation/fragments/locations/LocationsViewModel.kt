@@ -20,14 +20,9 @@ class LocationsViewModel @Inject constructor(private val getLocationsUseCase: Ge
         MutableStateFlow<LocationsFragmentState>(LocationsFragmentState.Init)
     val state: StateFlow<LocationsFragmentState> get() = _state
 
-
-    init {
-        fetchCharacters()
-    }
-
-    private fun fetchCharacters() {
+    fun fetchLocations(name: String?) {
         viewModelScope.launch {
-            getLocationsUseCase.invoke()
+            getLocationsUseCase.invoke(name)
                 .onStart {
                     setLoading()
                 }

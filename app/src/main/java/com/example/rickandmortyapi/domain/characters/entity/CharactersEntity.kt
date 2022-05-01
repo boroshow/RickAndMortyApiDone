@@ -2,6 +2,7 @@ package com.example.rickandmortyapi.domain.characters.entity
 
 import com.example.rickandmortyapi.domain.common.base.BaseId
 
+
 data class CharactersEntity(
     val info: Info,
     val results: List<CharacterEntity>,
@@ -21,13 +22,12 @@ data class CharacterEntity(
     val species: String,
     val type: String,
     val gender: String,
-    val origin: OriginCharacter,
+    val origin: OriginCharacter?,
     val location: LocationCharacter,
     val image: String,
-    val episode: List<String>,
+    val episode: List<String>?,
     val url: String,
-    val created: String,
-    override val baseId: Long,
+    val created: String, override val baseId: Long?,
 ) : BaseId
 
 data class LocationCharacter(

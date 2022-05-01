@@ -1,15 +1,17 @@
 package com.example.rickandmortyapi.presentation.fragments.characters
 
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rickandmortyapi.R
 import com.example.rickandmortyapi.databinding.FragmentCharactersBinding
@@ -25,7 +27,7 @@ import kotlinx.coroutines.launch
 class CharactersFragment : BaseFragment<FragmentCharactersBinding>() {
 
     private val viewModel: CharactersViewModel by viewModels()
-
+    private val args : CharactersFragmentArgs by navArgs()
     private val adapter: CharactersAdapter by lazy {
         CharactersAdapter()
     }
@@ -35,9 +37,17 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding>() {
     }
 
     override fun setupListeners() {
-        adapter.setOnClick(object : CharactersAdapter.OnClick{
-            override fun onClicked(position: CharacterEntity) {
+        adapterOnclick()
+        imageClick()
+    }
 
+    private fun adapterOnclick() {
+        adapter.setOnClick(object : CharactersAdapter.OnClick {
+            override fun onClicked(position: CharacterEntity) {
+                findNavController().navigate(
+                    CharactersFragmentDirections.actionCharactersFragmentToCharactersDetailFragment(
+                        position.id)
+                )
             }
         })
     }
@@ -48,6 +58,32 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding>() {
     }
 
     override fun setupUI() {
+        etLogic()
+        initAdapter()
+    }
+
+    private fun imageClick() {
+        binding.imageSearch.setOnClickListener {
+            findNavController().navigate(R.id.action_charactersFragment_to_characterFilterFragment)
+        }
+    }
+
+    private fun etLogic() {
+        binding.etSearchCharacters.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                viewModel.fetchCharacters(binding.etSearchCharacters.text.toString(), null, null)
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                viewModel.fetchCharacters(binding.etSearchCharacters.text.toString(), null, null)
+            }
+        })
+    }
+
+    private fun initAdapter() {
         binding.rvCharacters.apply {
             adapter = this@CharactersFragment.adapter
             layoutManager = LinearLayoutManager(context)
@@ -55,9 +91,10 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding>() {
     }
 
     private fun observeCharacters() {
+        Log.e("TAG", args.liveStatus.toString() )
+        viewModel.fetchCharacters(null, args.liveStatus,args.genderStatus)
         lifecycleScope.launch {
             viewModel.getCharacters.collectLatest {
-                Log.e("TAG", it.toString())
                 adapter.submitList(it)
             }
         }

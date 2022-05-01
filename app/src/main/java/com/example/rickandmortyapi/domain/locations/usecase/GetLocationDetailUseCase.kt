@@ -4,5 +4,5 @@ import com.example.rickandmortyapi.domain.locations.repository.LocationDetailRep
 import javax.inject.Inject
 
 class GetLocationDetailUseCase @Inject constructor(private val repository: LocationDetailRepository) {
-    fun invoke(id:Int) = repository.getLocationDetail(id)
+    operator fun invoke(locationId: Int) = repository.getLocationDetail(locationId)
 }

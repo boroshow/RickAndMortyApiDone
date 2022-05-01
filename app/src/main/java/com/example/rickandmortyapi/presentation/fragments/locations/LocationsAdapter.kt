@@ -5,11 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmortyapi.databinding.LocationsItemBinding
-import com.example.rickandmortyapi.domain.characters.entity.CharacterEntity
 import com.example.rickandmortyapi.domain.common.base.BaseDiffCallBack
-import com.example.rickandmortyapi.domain.episodes.entity.EpisodeEntity
 import com.example.rickandmortyapi.domain.locations.entity.LocationEntity
-import com.example.rickandmortyapi.presentation.fragments.characters.CharactersAdapter
 
 class LocationsAdapter : ListAdapter<LocationEntity, LocationsAdapter.LocationsViewHolder>(
     BaseDiffCallBack()) {
@@ -26,7 +23,7 @@ class LocationsAdapter : ListAdapter<LocationEntity, LocationsAdapter.LocationsV
         fun onBind(location: LocationEntity) {
             binding.tvLocationsName.text = location.name
             binding.tvLocationsType.text = location.type
-            itemView.setOnClickListener{
+            itemView.setOnClickListener {
                 onClick.onClicked(location)
             }
         }

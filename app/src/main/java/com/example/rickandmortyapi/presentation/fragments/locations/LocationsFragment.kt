@@ -1,5 +1,7 @@
 package com.example.rickandmortyapi.presentation.fragments.locations
 
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.widget.Toast
 import androidx.core.view.isVisible
@@ -32,10 +34,15 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding>() {
     }
 
     override fun setupListeners() {
+        adapterOnclick()
+    }
+
+    private fun adapterOnclick() {
         adapter.setOnClick(object : LocationsAdapter.OnClick {
             override fun onClicked(position: LocationEntity) {
                 findNavController().navigate(
-                    LocationsFragmentDirections.actionLocationsFragmentToLocationsDetailFragment(position.id)
+                    LocationsFragmentDirections.actionLocationsFragmentToLocationsDetailFragment(
+                        position.id)
                 )
             }
         })
@@ -47,6 +54,28 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding>() {
     }
 
     override fun setupUI() {
+        etLogic()
+        initAdapter()
+        // initDialog()
+    }
+
+    private fun etLogic() {
+        binding.etSearchLocations.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                viewModel.fetchLocations(binding.etSearchLocations.text.toString())
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                viewModel.fetchLocations(binding.etSearchLocations.text.toString())
+            }
+        })
+    }
+
+
+    private fun initAdapter() {
         binding.rvLocations.apply {
             adapter = this@LocationsFragment.adapter
             layoutManager = LinearLayoutManager(context)
@@ -54,6 +83,7 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding>() {
     }
 
     private fun observeCharacters() {
+        viewModel.fetchLocations(null)
         lifecycleScope.launch {
             viewModel.getLocations.collectLatest {
                 Log.e("TAG", it.toString())

@@ -7,7 +7,7 @@ data class LocationsEntity(
     val results: List<LocationEntity>,
 )
 
-data class Info (
+data class Info(
     val count: Int,
     val pages: Any,
     val next: Any,
@@ -15,12 +15,11 @@ data class Info (
 )
 
 data class LocationEntity(
-    val id: Int,
+    var id: Int,
     val name: String,
     val type: String,
-    val dimension : String,
-    val residents : List<String>,
-    val url : String,
-    val created : String,
-    override val baseId : Long,
+    val dimension: String,
+    val residents: List<String>,
+    val url: String,
+    val created: String, override val baseId: Long?,
 ) : BaseId

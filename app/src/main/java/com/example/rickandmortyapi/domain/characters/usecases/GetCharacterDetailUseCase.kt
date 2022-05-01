@@ -4,5 +4,5 @@ import com.example.rickandmortyapi.domain.characters.repository.CharacterDetailR
 import javax.inject.Inject
 
 class GetCharacterDetailUseCase @Inject constructor(private val repository: CharacterDetailRepository) {
-    fun invoke(characterId : String?) = repository.getCharacterDetail(characterId)
+    operator fun invoke(characterId : Int) = repository.getCharacterDetail(characterId)
 }

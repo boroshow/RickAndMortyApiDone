@@ -20,14 +20,13 @@ class CharactersViewModel @Inject constructor(private val getCharactersUseCase: 
         MutableStateFlow<CharactersFragmentState>(CharactersFragmentState.Init)
     val state: StateFlow<CharactersFragmentState> get() = _state
 
-
-    init {
-        fetchCharacters()
-    }
-
-    private fun fetchCharacters() {
+    fun fetchCharacters(
+        name: String?,
+        status: String?,
+        gender: String?,
+    ) {
         viewModelScope.launch {
-            getCharactersUseCase.invoke()
+            getCharactersUseCase.invoke(name, status, gender)
                 .onStart {
                     setLoading()
                 }
